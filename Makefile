@@ -16,13 +16,16 @@ ENAME=libft.a
 
 ## Compile command
 CC=cc
-FLAGS=-Wall -Wextra -Werror -g -o
+FLAGS=-Wall -Wextra -Werror -o
+
+## Files
+FILES=ft_isalpha.c
 
 $(NAME): libft.h ft_isalpha.o
 	$(CC) $(FLAGS) $(NAME) ft_isalpha.o
 
 ft_isalpha.o: ft_isalpha.c libft.h
-	$(CC) -c ft_isalpha.c
+	$(CC) $(FLAGS) -c $(FILES)
 
 .PHONY: clean fclean
 
