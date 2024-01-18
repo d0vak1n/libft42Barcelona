@@ -16,7 +16,7 @@ ENAME=libft.a
 
 ## Compile command
 CC=cc
-FLAGS=-Wall -Wextra -Werror -o
+CFLAGS=-Wall -Wextra -Werror
 
 ## Files
 FILES=ft_isalpha.c
