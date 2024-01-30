@@ -19,13 +19,21 @@ CC=cc
 CFLAGS=-Wall -Wextra -Werror
 
 ## Files
-FILES=ft_isalpha.c
+FILES= $(NAME).h ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c
 
-$(NAME): libft.h ft_isalpha.o
-	$(CC) $(FLAGS) $(NAME) ft_isalpha.o
+$(NAME): $(FILES)
+	$(CC) $(FLAGS) $(NAME) *.o
 
-ft_isalpha.o: ft_isalpha.c libft.h
-	$(CC) $(FLAGS) -c $(FILES)
+all:
+
+## TESTING:
+test: *.o
+	$(CC) $(CFLAGS) $@.c $? -o $@
+	make clean
+
+*.o: $(FILES)
+	$(CC) $(CFLAGS) -c $?
+## END TESTING
 
 .PHONY: clean fclean
 
