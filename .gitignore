@@ -4,3 +4,4 @@
 test
 test.c
 *.o
+test.dSYM/
