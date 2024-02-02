@@ -15,7 +15,7 @@ char	*getlastpos(char *s)
 {
 	while (*s != '\0')
 		s++;
-	return (s);
+	return (s - 1);
 }
 
 char	*ft_strrchr(const char *s, int c)
@@ -23,12 +23,14 @@ char	*ft_strrchr(const char *s, int c)
 	char	*str;
 
 	str = (char *)s;
-	while (*str)
+	str = getlastpos(str);
+	while (*str != '\0')
 	{
 		if (*str == c)
 			return (str);
-		str++;
+		str--;
 	}
+	if (*str == '\0' && c == 0)
+		return (str);
 	return (NULL);
-
 }
