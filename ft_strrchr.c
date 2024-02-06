@@ -24,13 +24,13 @@ char	*ft_strrchr(const char *s, int c)
 
 	str = (char *)s;
 	str = getlastpos(str);
+	if (*str == '\0' && c == 0)
+		return (str);
 	while (*str != '\0')
 	{
 		if (*str == c)
 			return (str);
 		str--;
 	}
-	if (*str == '\0' && c == 0)
-		return (str);
 	return (NULL);
 }
