@@ -1,39 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramoreno <ramoreno@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 12:21:51 by ramoreno          #+#    #+#             */
-/*   Updated: 2024/02/05 15:44:58 by ramoreno         ###   ########.fr       */
+/*   Created: 2024/02/06 18:30:53 by ramoreno          #+#    #+#             */
+/*   Updated: 2024/02/06 18:31:32 by ramoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
-	int	signo;
-	int	num;
 
-	i = 0;
-	num = 0;
-	signo = 1;
-	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-	{
-		i++;
-	}
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			signo = -1;
-		i++;
-	}
-	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
-	{
-		num = (str[i] - '0') + (num * 10);
-		i++;
-	}
-	return (num * signo);
 }

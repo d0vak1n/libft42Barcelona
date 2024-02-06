@@ -11,26 +11,20 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*getlastpos(char *s)
-{
-	while (*s != '\0')
-		s++;
-	return (s - 1);
-}
-
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*str;
+	int		i;
 
 	str = (char *)s;
-	str = getlastpos(str);
-	if (*str == '\0' && c == 0)
-		return (str);
-	while (*str != '\0')
+	i = ft_strlen(str);
+	if (str[i] == '\0' && c == '\0')
+		return (&str[i]);
+	while (i >= 0)
 	{
-		if (*str == c)
-			return (str);
-		str--;
+		if (str[i] == c)
+			return (&str[i]);
+		i--;
 	}
 	return (NULL);
 }
