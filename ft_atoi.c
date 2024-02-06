@@ -20,6 +20,11 @@ int	ft_atoi(const char *str)
 	i = 0;
 	num = 0;
 	signo = 1;
+
+	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
+	{
+		i++;
+	}
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
