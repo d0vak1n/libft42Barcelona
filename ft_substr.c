@@ -13,5 +13,15 @@
 
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-
+	size_t i;
+	char *subs;
+	i = 0;
+	if (!s || !start)
+		return (NULL);
+	while (start <= len)
+		i++;
+	subs = (char *)malloc(i * sizeof(char *));
+	if (!subs)
+		return (NULL);
+	return (subs);
 }
