@@ -22,15 +22,18 @@ FILES=ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen
 OBJS=$(patsubst %.c, %.o, $(FILES))
 
 $(NAME): $(OBJS)
+	@echo "Creando libreria $(NAME)\n"
 	ar -rvs $@ $^
 
 all: $(NAME)
 
 ## TESTING:
 test: $(OBJS)
+	@echo "\nCompilando todos los archivos...\n"
 	$(CC) $(CFLAGS) $@.c $? -o $@
 	make clean
-	./$@
+	@echo "\nEjecutando archivo test\n"
+	@./$@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^ -o $@
