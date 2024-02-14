@@ -21,12 +21,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (start > ft_strlen(s))
 		return (ft_strdup(""));
-	
-	subs = (char *)malloc((len) * sizeof(char *));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	subs = (char *)malloc((len + 1) * sizeof(char));
 	if (!subs)
 		return (NULL);
-
-	while (i < limit)
+	while (i < len)
 	{
 		subs[i] = s[start];
 		i++;
