@@ -13,7 +13,7 @@
 
 static int	_checkchar(char c, char const *set)
 {
-	while (set)
+	while (*set)
 	{
 		if (c == *set)
 			return (1);
@@ -31,13 +31,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1 || !set)
 		return (NULL);
 	start = (char *)s1;
-	end = (char *)(s1 + ft_strlen(s1));
-
+	end = (char *)((s1 + ft_strlen(s1)));
 	while (*start && _checkchar(*start, set))
 		start++;
-	while (*end > *start &&  _checkchar(*end, set))
+	while (end > start && _checkchar(*(end - 1), set))
 		end--;
 	res = ft_substr(start, 0, end - start);
 	return (res);
 }
-
