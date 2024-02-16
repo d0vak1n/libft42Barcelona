@@ -12,25 +12,41 @@
 #include "libft.h"
 #include <stdio.h>
 
-static int _countwords(char const *str, char c)
+static
+
+static int	_countwords(char const *str, char c)
 {
-	int	counter;
+	int		counter;
 
 	counter = 0;
 	while (*str)
-		if (*str == c || *str == '\0')
+	{
+		if (*str != c)
+		{
 			counter++;
+			while (*str != c && *str) //palabra
+				str++;
+		}
+		if (*str == c && *str)
+			while (*str == c && *str) // no palabra
+				str++;
+	}
 	return (counter);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	int i;
+	int j;
 	char **res;
 
 	i = 0;
 	if (!s)
 		return (NULL);
-	printf("%s", _countwords("hola que tal", " "));
+	res = malloc((_countwords(s, c) + 1) * sizeof(char *));
+	if (!res)
+		return (NULL);
 
+
+	
 }
