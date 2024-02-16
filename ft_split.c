@@ -12,8 +12,6 @@
 #include "libft.h"
 #include <stdio.h>
 
-static
-
 static int	_countwords(char const *str, char c)
 {
 	int		counter;
@@ -24,29 +22,62 @@ static int	_countwords(char const *str, char c)
 		if (*str != c)
 		{
 			counter++;
-			while (*str != c && *str) //palabra
+			while (*str != c && *str)
 				str++;
 		}
 		if (*str == c && *str)
-			while (*str == c && *str) // no palabra
+			while (*str == c && *str)
 				str++;
 	}
 	return (counter);
 }
 
+static char	*_separateword(char const *str, char c, int const index)
+{
+	char	*res;
+	int		counter;
+	int		end;
+	int		i;
+
+	counter = 0;
+	i = 0;
+	end = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] == c && str[i] != '\0')
+			i++;
+		if (counter++ == index)
+		{
+			while (str[i + end] != c && str[i + end] != '\0')
+				end++;
+			res = ft_substr(&str[i], 0, end);
+			return (res);
+		}
+		while (str[i] != c && str[i] != '\0')
+			++i;
+	}
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	int i;
-	int j;
-	char **res;
+	int		row;
+	int		i;
+	char	**res;
 
 	i = 0;
+	row = -1;
 	if (!s)
 		return (NULL);
-	res = malloc((_countwords(s, c) + 1) * sizeof(char *));
+	res = (char **)malloc((_countwords(s, c) + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);
-
-
-	
+	res[_countwords(s, c)] = NULL;
+	while (res[++row] != NULL)
+		res[row] = _separateword(s, c, row);
+		if (!res[row])
+		{
+			
+		}
+	return (res);
 }
