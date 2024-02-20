@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdio.h>
 
 static int	_countwords(char const *str, char c)
 {
@@ -62,22 +61,27 @@ static char	*_separateword(char const *str, char c, int const index)
 char	**ft_split(char const *s, char c)
 {
 	int		row;
-	int		i;
+	int		words;
 	char	**res;
 
-	i = 0;
 	row = -1;
+	words = _countwords(s, c);
 	if (!s)
 		return (NULL);
-	res = (char **)malloc((_countwords(s, c) + 1) * sizeof(char *));
+	res = (char **)malloc((words + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);
-	res[_countwords(s, c)] = NULL;
-	while (res[++row] != NULL)
+	res[words] = NULL;
+	while (++row < words)
+	{
 		res[row] = _separateword(s, c, row);
 		if (!res[row])
 		{
-			
+			while (--row >= 0)
+				free(res[row]);
+			free(res);
+			return (NULL);
 		}
+	}
 	return (res);
 }

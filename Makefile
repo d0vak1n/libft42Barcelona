@@ -15,7 +15,7 @@ NAME=libft.a
 
 ## Compile command
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS=-Wall -Wextra -Werror -g
 
 ## Files
 FILES=ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c \
