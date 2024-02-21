@@ -9,13 +9,19 @@
 /*   Updated: 2024/02/20 11:33:34 by ramoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <limits.h>
 #include "libft.h"
 
 static int	numdigits(int n)
 {
-	int counter;
+	int	counter;
 
 	counter = 1;
+	if (n == INT_MIN)
+	{
+		counter = 11;
+		return (11);
+	}
 	if (n < 0)
 	{
 		n = -n;
@@ -23,41 +29,53 @@ static int	numdigits(int n)
 	}
 	while (n > 9)
 	{
-		n = n / 10;
+		n /= 10;
 		counter++;
 	}
 	return (counter);
 }
 
-static char *numtostr(int n)
+static char	*minvalue(int min, char *str, int i)
 {
-	char	*s;
-	size_t	dnum;
+	char	*numbar;
 
-	if (n > 10)
+	numbar = "0123456789";
+	str[0] = '-';
+	str[1] = '2';
+	min = 147483648;
+	while (min > 0)
 	{
-		dnum = n % 10;
-		n = nb / 10;
-		numtostr(n);
+		str[--i] = numbar[min % 10];
+		min /= 10;
 	}
-	else if (n < 0)
-	{
-
-	}
-	else
-		dnum = n;
-	
+	return (str);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	int		dnum;
 	char	*str;
+	char	*numbar;
+	int		i;
 
-	if (!n)
+	i = numdigits(n);
+	numbar = "0123456789";
+	str = (char *)malloc((numdigits(n) + 1) * sizeof(char));
+	if (!str)
 		return (NULL);
-	//if (n == INT_MIN)
-	if (!(str = (char *)malloc((numdigits(n) + 1) * sizeof(char))))
-		return (NULL);
-	ft_strlcpy(str, numtostr(n), numdigits(n));
+	str[numdigits(n)] = '\0';
+	if (n == INT_MIN)
+		return (minvalue(INT_MIN, str, i));
+	if (n < 0)
+	{
+		str[0] = '-';
+		n = -n;
+	}
+	if (n == 0)
+		str[0] = numbar[n];
+	while (n > 0)
+	{
+		str[--i] = numbar[n % 10];
+		n /= 10;
+	}
+	return (str);
 }
