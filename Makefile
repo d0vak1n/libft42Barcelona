@@ -15,7 +15,7 @@ NAME=libft.a
 
 ## Compile command
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -g
+CFLAGS=-Wall -Wextra -Werror
 
 ## Files
 FILES=ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c \
@@ -23,29 +23,18 @@ FILES=ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen
 	ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c \
 	ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
 	ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
+	
 OBJS=$(patsubst %.c, %.o, $(FILES))
 
 $(NAME): $(OBJS)
 	@echo "\n📝 Creating library... $(NAME) 📝\n"
 	@ar -rvs $@ $^
-	@echo "\n📖 Created succesfully $(NAME) 📖\n"
+	@echo "\n📖 $(NAME) created succesfully 📖\n"
 
 all: $(NAME)
 
-## TESTING:
-test: $(OBJS)
-	@echo "\n ❗️❗️ Compiling all the files... ❗️❗️ \n"
-	@$(CC) $(CFLAGS) $@.c $? -o $@
-	@make clean
-	@echo "\n 🐁 Executing test... 🐁 \n"
-	@./$@
-## END TESTING
-
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $^ -o $@
-
-
-.PHONY: all clean fclean re
 
 clean:
 	@rm -f $(OBJS)
@@ -56,6 +45,8 @@ fclean: clean
 	@echo "\n 🗑 All .a deleted 🗑\n"
 
 re: fclean all
-	@echo "\n🔁 Relinking... 🔁\n"
+	@echo "\n🔁 Relinked 🔁\n"
+
+.PHONY: all clean fclean re
 
 ## @ left, ? right
