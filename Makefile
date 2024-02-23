@@ -26,7 +26,7 @@ FILES=ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen
 	
 OBJS=$(patsubst %.c, %.o, $(FILES))
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) libft.h
 	@echo "\n📝 Creating library... $(NAME) 📝\n"
 	@ar -rvs $@ $^
 	@echo "\n📖 $(NAME) created succesfully 📖\n"
