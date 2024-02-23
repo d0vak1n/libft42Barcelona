@@ -28,7 +28,7 @@ OBJS=$(patsubst %.c, %.o, $(FILES))
 
 $(NAME): $(OBJS) libft.h
 	@echo "\n📝 Creating library... $(NAME) 📝\n"
-	@ar -rvs $@ $^
+	ar -rvs $@ $^
 	@echo "\n📖 $(NAME) created succesfully 📖\n"
 
 all: $(NAME)
